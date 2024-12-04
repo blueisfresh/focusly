@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Focusly: TODO List App
 
-## Getting Started
+## **Project Description**
 
-First, run the development server:
+Focusly is a TODO list application designed to help users stay organized, manage priorities, and receive timely notifications. The app emphasizes simplicity, usability, and seamless task management.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## **Core Features**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### **Task Management**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Add, edit, delete tasks.
+- Mark tasks as complete or incomplete.
+- **Task Prioritization**
+  - Assign priority levels: High, Medium, Low.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### **Filtering and Sorting**
 
-## Learn More
+- Filter tasks by:
+  - Status: Completed, Pending.
+  - Priority level.
+- Sort tasks by deadline or creation date.
 
-To learn more about Next.js, take a look at the following resources:
+### **Notifications**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Receive reminders for:
+  - Upcoming tasks.
+  - Overdue tasks.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### **Drag-and-Drop Task Management**
 
-## Deploy on Vercel
+- Evaluate and use either:
+  - [Motion's React Reorder Library](https://motion.dev/docs/react-reorder).
+  - [Swapy Library](https://swapy.tahazsh.com/).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### **Light and Dark Mode**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Allow users to switch between light and dark themes for better accessibility and comfort.
+
+## **Data Storage Approach**
+
+- **JSON-Based Storage**: Tasks will be managed and structured as a JSON object.
+- **Local Storage**: The JSON object will be saved in the browser's `localStorage` for persistence.
+- **JSON Structure**: Building a robust and well-structured JSON schema will be foundational to the project.
+
+## **Browser Compatibility**
+
+Focusly will be tested and optimized for compatibility with major browsers:
+
+- Google Chrome
+- Mozilla Firefox
+- Microsoft Edge
+- Safari
+
+## **Error Handling**
+
+The application will handle the following scenarios gracefully:
+
+1. **Invalid JSON Import**:
+   - Validate imported JSON files for correct structure and data types.
+   - Show user-friendly error messages for invalid or corrupted files.
+2. **Local Storage Full**:
+   - Notify the user when localStorage reaches its limit.
+   - Suggest exporting data to a JSON file to free up space.
+3. **Task Overlap**:
+   - Warn users if tasks with overlapping due dates are prioritized as High.
+4. **Notification Permission Denied**:
+   - Notify the user when browser notification permissions are denied.
+   - Provide steps to enable notifications.
+5. **Drag-and-Drop Errors**:
+   - Handle cases where items fail to drop into valid containers.
+   - Restore the previous state if drag-and-drop actions fail.
+6. **Browser Incompatibility**:
+   - Display a message if the browser lacks required features (e.g., outdated versions).
+   - Suggest upgrading the browser for a better experience.
