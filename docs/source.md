@@ -1,0 +1,2 @@
+- https://flowbite.com/docs/components/navbar/
+- https://tailwindcss.com/docs/customizing-colors
