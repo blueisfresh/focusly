@@ -10,14 +10,25 @@ export default function TaskCreatorPage() {
   const router = useRouter();
 
   const handleSave = (taskName: string, description: string) => {
-    setRows((prevRows) => [
-      ...prevRows,
-      {
-        key: `${prevRows.length + 1}`,
+    setRows((prevRows) => {
+      console.log("Previous Rows (before update):", prevRows);
+
+      // Create a new task object
+      const newTask = {
+        key: `${prevRows.length + 1}`, // Ensure unique key
         content: taskName,
         description: description,
-      },
-    ]);
+      };
+
+      console.log("New Task:", newTask);
+      console.log(prevRows.length);
+
+      // Return the updated rows
+      const updatedRows = [...prevRows, newTask];
+      console.log("Updated Rows (after adding):", updatedRows);
+
+      return updatedRows;
+    });
 
     router.push("/"); // Navigate back to the table page
   };
