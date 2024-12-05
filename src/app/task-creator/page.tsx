@@ -1,24 +1,32 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import TaskModal from "../../components/task-modal";
+import { useRouter } from "next/navigation";
+import { useTaskContext } from "@/contexts/TaskContext";
 
 export default function TaskCreatorPage() {
-  const [isModalOpen, setModalOpen] = useState(true); // Open the modal by default
-
-  const [taskName, setTaskName] = useState("");
-  const [description, setDescription] = useState("");
+  const { setRows } = useTaskContext();
+  const router = useRouter();
 
   const handleSave = (taskName: string, description: string) => {
-    console.log("Saving Task:", { taskName, description });
-    // Add your logic for saving the task
+    setRows((prevRows) => [
+      ...prevRows,
+      {
+        key: `${prevRows.length + 1}`,
+        content: taskName,
+        description: description,
+      },
+    ]);
+
+    router.push("/"); // Navigate back to the table page
   };
 
   return (
     <div>
       <TaskModal
-        isOpen={isModalOpen}
-        onClose={() => setModalOpen(false)} // Close the modal
+        isOpen={true}
+        onClose={() => router.push("/")} // Navigate back on close
         onSave={handleSave} // Handle saving task
         title="Add New Task"
         taskNameLabel="Task Name"

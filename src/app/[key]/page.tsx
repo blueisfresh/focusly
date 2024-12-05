@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useTaskContext } from "@/contexts/TaskContext"; // Import the context
 
 export default function TableRowDetails({
   params,
@@ -9,27 +10,11 @@ export default function TableRowDetails({
 }) {
   const router = useRouter();
 
+  const { rows } = useTaskContext(); // Access rows from TaskContext
   // Dummy data for demonstration (replace this with your actual data source)
-  const tasks = [
-    {
-      key: "1",
-      content: "Apple MacBook Pro 17",
-      description: "A high-end laptop.",
-    },
-    {
-      key: "2",
-      content: "Dell XPS 13",
-      description: "A compact and powerful ultrabook.",
-    },
-    {
-      key: "3",
-      content: "Lenovo ThinkPad X1",
-      description: "A durable business laptop.",
-    },
-  ];
 
   // Find the task by key
-  const task = tasks.find((t) => t.key === params.key);
+  const task = rows.find((t) => t.key === params.key);
 
   if (!task) {
     return (

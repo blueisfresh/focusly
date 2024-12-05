@@ -1,41 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import TableRow from "./table-row";
-import Task from "../task-modal";
+import { useTaskContext } from "@/contexts/TaskContext";
 
 export default function Table() {
-  const [rows, setRows] = useState<
-    { key: string; content: string; description: string }[]
-  >([
-    {
-      key: "1",
-      content: "Grocery Shopping",
-      description:
-        "Buy fruits, vegetables, milk, and bread from the supermarket.",
-    },
-    {
-      key: "2",
-      content: "Workout Session",
-      description:
-        "Complete a 30-minute cardio session and 15 minutes of stretching.",
-    },
-    {
-      key: "3",
-      content: "Prepare Presentation",
-      description: "Create slides for the upcoming project meeting on Monday.",
-    },
-  ]);
+  const { rows, setRows } = useTaskContext();
 
-  // const [isModalOpen, setModalOpen] = useState(false);
-
-  // const handleAddNewRow = (taskName: string, description: string) => {
-  //   const newKey = `${rows.length + 1}`; // Generate a new unique key
-  //   setRows((prevRows) => [
-  //     ...prevRows,
-  //     { key: newKey, content: taskName, description: description },
-  //   ]);
-  // };
+  const handleAddNewTask = () => {
+    window.location.href = "/task-creator";
+  };
 
   return (
     <div className="flex justify-center">
@@ -60,24 +34,12 @@ export default function Table() {
           </tbody>
         </table>
 
-        {/* Button to Add a New Task */}
         <button
-          onClick={() => (window.location.href = "/task-creator")}
-          // onClick={() => setModalOpen(true)} // Open the modal
+          onClick={handleAddNewTask}
           className="mt-4 w-full text-xs font-semibold uppercase bg-gray-50 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition"
         >
           Add New Task
         </button>
-
-        {/* Modal
-        
-        <Task
-          isOpen={isModalOpen}
-          onClose={() => setModalOpen(false)}
-          onSave={(taskName, description) =>
-            handleAddNewRow(taskName, description)
-          }
-        />*/}
       </div>
     </div>
   );

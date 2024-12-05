@@ -6,11 +6,11 @@ interface TaskModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSave: (taskName: string, description: string) => void;
-  title: string; // Title for the modal (e.g., "Add New Task" or "Edit Task")
-  taskNameLabel: string; // Label for the Task Name field
-  descriptionLabel: string; // Label for the Description field
-  saveButtonText: string; // Text for the Save button
-  cancelButtonText: string; // Text for the Cancel button
+  title: string;
+  taskNameLabel: string;
+  descriptionLabel: string;
+  saveButtonText: string;
+  cancelButtonText: string;
 }
 
 export default function TaskModal({
@@ -25,6 +25,12 @@ export default function TaskModal({
 }: TaskModalProps) {
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
+
+  const handleSave = () => {
+    onSave(taskName, description); // Call the save handler with current values
+    setTaskName(""); // Reset the task name
+    setDescription(""); // Reset the description
+  };
 
   if (!isOpen) return null;
 
@@ -61,10 +67,7 @@ export default function TaskModal({
             {cancelButtonText}
           </button>
           <button
-            onClick={() => {
-              onSave(taskName, description);
-              onClose(); // Close the modal after saving
-            }}
+            onClick={handleSave}
             className="px-4 py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600"
           >
             {saveButtonText}
