@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import TableRow from "./table-row";
-import Task from "../task-creator";
+import Task from "../task-modal";
 
 export default function Table() {
   const [rows, setRows] = useState<
@@ -10,30 +10,32 @@ export default function Table() {
   >([
     {
       key: "1",
-      content: "Apple MacBook Pro 17",
-      description: "A high-end laptop.",
+      content: "Grocery Shopping",
+      description:
+        "Buy fruits, vegetables, milk, and bread from the supermarket.",
     },
     {
       key: "2",
-      content: "Dell XPS 13",
-      description: "A compact and powerful ultrabook.",
+      content: "Workout Session",
+      description:
+        "Complete a 30-minute cardio session and 15 minutes of stretching.",
     },
     {
       key: "3",
-      content: "Lenovo ThinkPad X1",
-      description: "A durable business laptop.",
+      content: "Prepare Presentation",
+      description: "Create slides for the upcoming project meeting on Monday.",
     },
   ]);
 
-  const [isModalOpen, setModalOpen] = useState(false);
+  // const [isModalOpen, setModalOpen] = useState(false);
 
-  const handleAddNewRow = (taskName: string, description: string) => {
-    const newKey = `${rows.length + 1}`; // Generate a new unique key
-    setRows((prevRows) => [
-      ...prevRows,
-      { key: newKey, content: taskName, description: description },
-    ]);
-  };
+  // const handleAddNewRow = (taskName: string, description: string) => {
+  //   const newKey = `${rows.length + 1}`; // Generate a new unique key
+  //   setRows((prevRows) => [
+  //     ...prevRows,
+  //     { key: newKey, content: taskName, description: description },
+  //   ]);
+  // };
 
   return (
     <div className="flex justify-center">
@@ -60,20 +62,22 @@ export default function Table() {
 
         {/* Button to Add a New Task */}
         <button
-          onClick={() => setModalOpen(true)} // Open the modal
+          onClick={() => (window.location.href = "/task-creator")}
+          // onClick={() => setModalOpen(true)} // Open the modal
           className="mt-4 w-full text-xs font-semibold uppercase bg-gray-50 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition"
         >
           Add New Task
         </button>
 
-        {/* Modal */}
+        {/* Modal
+        
         <Task
           isOpen={isModalOpen}
           onClose={() => setModalOpen(false)}
           onSave={(taskName, description) =>
             handleAddNewRow(taskName, description)
           }
-        />
+        />*/}
       </div>
     </div>
   );

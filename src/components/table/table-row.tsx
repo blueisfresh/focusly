@@ -26,12 +26,3 @@ export default function TableRow({
     </tr>
   );
 }
-
-// Helper function to create a new TableRow
-export function createNewRow(taskname: string, keyProp: string): JSX.Element {
-  return (
-    <TableRow keyProp={keyProp} key={keyProp}>
-      {taskname}
-    </TableRow>
-  );
-}

@@ -2,17 +2,27 @@
 
 import React, { useState } from "react";
 
-interface TaskCreatorProps {
+interface TaskModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSave: (taskName: string, description: string) => void;
+  title: string; // Title for the modal (e.g., "Add New Task" or "Edit Task")
+  taskNameLabel: string; // Label for the Task Name field
+  descriptionLabel: string; // Label for the Description field
+  saveButtonText: string; // Text for the Save button
+  cancelButtonText: string; // Text for the Cancel button
 }
 
-export default function TaskCreator({
+export default function TaskModal({
   isOpen,
   onClose,
   onSave,
-}: TaskCreatorProps) {
+  title,
+  taskNameLabel,
+  descriptionLabel,
+  saveButtonText,
+  cancelButtonText,
+}: TaskModalProps) {
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
 
@@ -21,10 +31,10 @@ export default function TaskCreator({
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white w-[400px] p-6 rounded-lg shadow-lg">
-        <h2 className="text-lg font-bold mb-4">Add New Task</h2>
+        <h2 className="text-lg font-bold mb-4">{title}</h2>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
-            Task Name
+            {taskNameLabel}
           </label>
           <input
             type="text"
@@ -35,7 +45,7 @@ export default function TaskCreator({
         </div>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
-            Description
+            {descriptionLabel}
           </label>
           <textarea
             value={description}
@@ -48,7 +58,7 @@ export default function TaskCreator({
             onClick={onClose}
             className="px-4 py-2 mr-2 text-sm bg-gray-200 rounded-md hover:bg-gray-300"
           >
-            Cancel
+            {cancelButtonText}
           </button>
           <button
             onClick={() => {
@@ -57,7 +67,7 @@ export default function TaskCreator({
             }}
             className="px-4 py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600"
           >
-            Save
+            {saveButtonText}
           </button>
         </div>
       </div>
