@@ -14,3 +14,7 @@ export default function TableRow({ children }: { children: React.ReactNode }) {
     </tr>
   );
 }
+
+export function createNewRow(taskname: string): JSX.Element {
+  return <TableRow>{taskname}</TableRow>;
+}

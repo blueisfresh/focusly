@@ -1,6 +1,7 @@
 - [x] Initialize Readme
 - [x] Seperate Project into many different todos
 - [x] About Page added
+- [] Functionality add new Task when pressed add new task
 - [] Import and export functionality
 - [] Create json structure
 - [] create json reader
