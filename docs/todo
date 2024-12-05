@@ -1,2 +1,11 @@
 - [x] Initialize Readme
-- [ ] Seperate Project into many different todos
+- [x] Seperate Project into many different todos
+- [x] About Page added
+- [] Import and export functionality
+- [] Create json structure
+- [] create json reader
+- [] Table container
+- [] Task functionalities (done, importance etc...)
+- [] Notifications
+- [] Light and Dark Mode
+- [] Filtering
