@@ -24,12 +24,13 @@ export default function TaskModal({
   cancelButtonText,
 }: TaskModalProps) {
   const [taskName, setTaskName] = useState("");
+  console.log(`Task-modal.tsx Usestate - taskName: ${taskName}`);
   const [description, setDescription] = useState("");
+  console.log(`Task-modal.tsx Usestate - description: ${description}`);
 
   const handleSave = () => {
     onSave(taskName, description); // Call the save handler with current values
-    setTaskName(""); // Reset the task name
-    setDescription(""); // Reset the description
+    console.log(`Task-modal.tsx - onSave: ${onSave}`);
   };
 
   if (!isOpen) return null;

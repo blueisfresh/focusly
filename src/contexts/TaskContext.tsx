@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 interface Task {
   key: string;
@@ -10,7 +11,7 @@ interface Task {
 
 interface TaskContextType {
   rows: Task[];
-  setRows: React.Dispatch<React.SetStateAction<Task[]>>;
+  addTask: (taskName: string, description: string) => void; // Add Task method
 }
 
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
@@ -36,8 +37,25 @@ export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
     },
   ]);
 
+  // Add Task method to update the rows state
+  const addTask = (taskName: string, description: string) => {
+    const newTask = {
+      key: uuidv4(), // Use UUID for unique keys
+      content: taskName,
+      description,
+    };
+
+    setRows((prevRows) => {
+      const updatedRows = [...prevRows, newTask];
+      console.log(prevRows);
+      console.log("Task added:", newTask);
+      console.log("Updated rows in context:", updatedRows);
+      return updatedRows;
+    });
+  };
+
   return (
-    <TaskContext.Provider value={{ rows, setRows }}>
+    <TaskContext.Provider value={{ rows, addTask }}>
       {children}
     </TaskContext.Provider>
   );

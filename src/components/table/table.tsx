@@ -5,10 +5,14 @@ import TableRow from "./table-row";
 import { useTaskContext } from "@/contexts/TaskContext";
 
 export default function Table() {
-  const { rows, setRows } = useTaskContext();
+  const { rows } = useTaskContext();
+  console.log(
+    "Rows in Table component:",
+    rows.map((row) => row.key)
+  );
 
   const handleAddNewTask = () => {
-    window.location.href = "/task-creator";
+    window.location.href = "/task-creator"; // Navigate to task-creator page
   };
 
   return (

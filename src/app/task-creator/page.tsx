@@ -6,31 +6,37 @@ import { useRouter } from "next/navigation";
 import { useTaskContext } from "@/contexts/TaskContext";
 
 export default function TaskCreatorPage() {
-  const { setRows } = useTaskContext();
+  const { addTask } = useTaskContext();
   const router = useRouter();
 
   const handleSave = (taskName: string, description: string) => {
-    setRows((prevRows) => {
-      console.log("Previous Rows (before update):", prevRows);
+    addTask(taskName, description);
+    router.push("/");
 
-      // Create a new task object
-      const newTask = {
-        key: `${prevRows.length + 1}`, // Ensure unique key
-        content: taskName,
-        description: description,
-      };
+    // setRows((prevRows) => {
+    //   console.log(
+    //     `Page.tsx - Previous Rows (before update): ${JSON.stringify(prevRows)}`
+    //   );
 
-      console.log("New Task:", newTask);
-      console.log(prevRows.length);
+    //   // Create a new task object
+    //   const newTask = {
+    //     key: `${prevRows.length + 1}`, // Ensure unique key
+    //     content: taskName,
+    //     description: description,
+    //   };
 
-      // Return the updated rows
-      const updatedRows = [...prevRows, newTask];
-      console.log("Updated Rows (after adding):", updatedRows);
+    //   console.log("Page.tsx - New Task:", newTask);
+    //   console.log(`Page.tsx - B4 prevRowsLength=${prevRows.length}`);
 
-      return updatedRows;
-    });
+    //   // Return the updated rows
+    //   const updatedRows = [...prevRows, newTask];
+    //   console.log(`Page.tsx - Updated Rows (after adding): ${updatedRows}`);
+    //   console.log(`Page.tsx - after prevRowsLength=${updatedRows.length}`);
 
-    router.push("/"); // Navigate back to the table page
+    //   return updatedRows;
+    // });
+
+    // router.push("/"); // Navigate back to the table page
   };
 
   return (
