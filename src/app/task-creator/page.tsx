@@ -4,6 +4,7 @@ import React from "react";
 import TaskModal from "../../components/task-modal";
 import { useRouter } from "next/navigation";
 import { useTaskContext } from "@/contexts/TaskContext";
+import { getLogs } from "@/utils/logger";
 
 export default function TaskCreatorPage() {
   const { addTask } = useTaskContext();
@@ -11,32 +12,7 @@ export default function TaskCreatorPage() {
 
   const handleSave = (taskName: string, description: string) => {
     addTask(taskName, description);
-    router.push("/");
-
-    // setRows((prevRows) => {
-    //   console.log(
-    //     `Page.tsx - Previous Rows (before update): ${JSON.stringify(prevRows)}`
-    //   );
-
-    //   // Create a new task object
-    //   const newTask = {
-    //     key: `${prevRows.length + 1}`, // Ensure unique key
-    //     content: taskName,
-    //     description: description,
-    //   };
-
-    //   console.log("Page.tsx - New Task:", newTask);
-    //   console.log(`Page.tsx - B4 prevRowsLength=${prevRows.length}`);
-
-    //   // Return the updated rows
-    //   const updatedRows = [...prevRows, newTask];
-    //   console.log(`Page.tsx - Updated Rows (after adding): ${updatedRows}`);
-    //   console.log(`Page.tsx - after prevRowsLength=${updatedRows.length}`);
-
-    //   return updatedRows;
-    // });
-
-    // router.push("/"); // Navigate back to the table page
+    router.push("/"); // Navigate back to the table page
   };
 
   return (
@@ -51,6 +27,10 @@ export default function TaskCreatorPage() {
         saveButtonText="Save"
         cancelButtonText="Cancel"
       />
+      <div className="mt-4 p-4 bg-gray-100 rounded">
+        <h2 className="text-lg font-bold mb-2">Logs</h2>
+        <pre className="text-sm">{getLogs().join("\n")}</pre>
+      </div>
     </div>
   );
 }

@@ -26,12 +26,6 @@ Focusly is a TODO list application designed to help users stay organized, manage
   - Upcoming tasks.
   - Overdue tasks.
 
-### **Drag-and-Drop Task Management**
-
-- Evaluate and use either:
-  - [Motion's React Reorder Library](https://motion.dev/docs/react-reorder).
-  - [Swapy Library](https://swapy.tahazsh.com/).
-
 ### **Light and Dark Mode**
 
 - Allow users to switch between light and dark themes for better accessibility and comfort.

@@ -1,7 +1,8 @@
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { log, getLogs } from "@/utils/logger";
 
 interface Task {
   key: string;
@@ -11,7 +12,7 @@ interface Task {
 
 interface TaskContextType {
   rows: Task[];
-  addTask: (taskName: string, description: string) => void; // Add Task method
+  addTask: (taskName: string, description: string) => void;
 }
 
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
@@ -47,12 +48,17 @@ export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
 
     setRows((prevRows) => {
       const updatedRows = [...prevRows, newTask];
-      console.log(prevRows);
-      console.log("Task added:", newTask);
-      console.log("Updated rows in context:", updatedRows);
+      log(`Previous Rows: ${JSON.stringify(prevRows)}`);
+      log(`Task added: ${JSON.stringify(newTask)}`);
+      log(`Updated rows in context: ${JSON.stringify(updatedRows)}`);
       return updatedRows;
     });
   };
+
+  // Use useEffect to log changes in rows state
+  useEffect(() => {
+    log(`Rows state updated: ${JSON.stringify(rows)}`);
+  }, [rows]);
 
   return (
     <TaskContext.Provider value={{ rows, addTask }}>
