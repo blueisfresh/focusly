@@ -1,23 +1,141 @@
-- [x] Initialize Readme
-- [x] Seperate Project into many different todos
-- [x] About Page added
-- [x] Functionality add new Task when pressed add new task
-- [] open window to fill out name and description of the task, priority etc. and save that
-- [] make the rows clickable
+### **Project Setup**
+
+1. [ ] Initialize a new Next.js project.
+   - Use TypeScript: `npx create-next-app@latest focusly --typescript`.
+2. [ ] Set up the folder structure:
+   - Create directories for `components`, `hooks`, `store`, `types`, and `utils`.
+3. [ ] Install dependencies:
+   - Zustand: `npm install zustand`.
+   - Optional: Other libraries for styling, like Tailwind CSS or CSS Modules.
 
 ---
 
-- [] Import and export functionality
-- [] Create json structure
-- [] create json reader
-- [] Table container
-- [] Task functionalities (done, importance etc...)
-- [] Notifications
-- [] Light and Dark Mode
-- [] Filtering
+### **UI Components**
+
+#### TaskTable
+
+4. [ ] Create `TaskTable.tsx`:
+   - [ ] Render a table with sorting and filtering functionality.
+   - [ ] Add an **"Add Task"** button at the top or bottom of the table.
+   - [ ] Integrate Zustand to fetch and display tasks from the store.
+
+#### TaskRow
+
+5. [ ] Create `TaskRow.tsx`:
+   - [ ] Display task data (title, due date, priority, etc.).
+   - [ ] Add **Edit** and **Delete** buttons.
+   - [ ] Use Zustand to handle task deletion (`deleteTask`).
+   - [ ] Redirect to `/edit/[id]` when **Edit** is clicked.
+
+#### Notification
+
+6. [ ] Create `Notification.tsx`:
+   - [ ] Show reminders for overdue or upcoming tasks.
+   - [ ] Integrate with Zustand to fetch tasks and determine notifications.
 
 ---
 
-- [] About page similar to the Table in the Home Page
-- [] set a color theme throughout the page
-- [] hover effect delayed
+### **Pages**
+
+7. [ ] Implement `/` (home page):
+
+   - [ ] Use `TaskTable` to display tasks.
+   - [ ] Ensure all tasks are fetched and displayed correctly.
+
+8. [ ] Implement `/add` (add task page):
+
+   - [ ] Create a form for adding tasks.
+   - [ ] Use `validateTask.ts` to validate inputs.
+   - [ ] Use Zustand to add new tasks (`addTask`).
+
+9. [ ] Implement `/edit/[id]` (edit task page):
+
+   - [ ] Fetch the task from Zustand using the dynamic `id` from the route.
+   - [ ] Pre-fill the form with the task’s current details.
+   - [ ] Use `validateTask.ts` to validate updates.
+   - [ ] Use Zustand to update the task (`updateTask`).
+
+10. [ ] Implement `/task/[id]` (task detail page):
+
+    - [ ] Fetch the task details from Zustand using the dynamic `id` from the route.
+    - [ ] Display all task details in a readable format.
+
+11. [ ] Implement `/import` (import JSON page):
+
+    - [ ] Create a file upload form to import tasks from a JSON file.
+    - [ ] Validate the JSON structure before importing.
+    - [ ] Use Zustand to populate tasks (`setTasks`).
+
+12. [ ] Implement `/about` (about page):
+    - [ ] Write a brief description of the app and its purpose.
+
+---
+
+### **State Management with Zustand**
+
+13. [ ] Set up `taskStore.ts`:
+
+- [ ] Define the initial state for the tasks array.
+- [ ] Implement `addTask`, `updateTask`, and `deleteTask` actions.
+- [ ] Implement `setTasks` for importing tasks.
+
+---
+
+### **Utility Functions**
+
+14. [ ] Create `validateTask.ts`:
+
+- [ ] Add validation logic for task properties (e.g., required title, valid due date).
+- [ ] Ensure reusable validation across `/add` and `/edit/[id]`.
+
+---
+
+### **Styling**
+
+15. [ ] Set up global styles in `globals.css` (or install Tailwind CSS).
+16. [ ] Style `TaskTable` and `TaskRow` for a clean, user-friendly layout.
+17. [ ] Add light and dark mode support:
+    - [ ] Use CSS variables or a library like Tailwind for theme switching.
+
+---
+
+### **Browser Compatibility**
+
+18. [ ] Test the app on:
+    - [ ] Google Chrome.
+    - [ ] Mozilla Firefox.
+    - [ ] Microsoft Edge.
+    - [ ] Safari.
+
+---
+
+### **Testing**
+
+19. [ ] Write unit tests for:
+
+    - [ ] `validateTask.ts` (validation logic).
+    - [ ] Zustand actions (`addTask`, `updateTask`, etc.).
+
+20. [ ] Write integration tests for:
+    - [ ] Adding a task.
+    - [ ] Editing a task.
+    - [ ] Deleting a task.
+    - [ ] Importing tasks from JSON.
+
+---
+
+### **Error Handling**
+
+21. [ ] Handle the following edge cases:
+    - [ ] **Validation Errors**: Display user-friendly error messages.
+    - [ ] **Empty Task List**: Show a placeholder message when no tasks exist.
+    - [ ] **Invalid JSON Import**: Display errors for malformed or incomplete JSON files.
+    - [ ] **Notification Permission Denied**: Show instructions for enabling notifications.
+
+---
+
+### **Final Review**
+
+22. [ ] Perform a full functionality test.
+23. [ ] Optimize for performance (e.g., lazy load pages/components if necessary).
+24. [ ] Deploy the app to a hosting platform like Vercel.

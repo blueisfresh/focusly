@@ -1,11 +1,10 @@
 "use client";
 
-import Table from "@/components/table/table";
-import Image from "next/image";
+import Table from "@/components/table/TaskTable";
 
 export default function Home() {
   return (
-    <main className="">
+    <main>
       <Table />
     </main>
   );

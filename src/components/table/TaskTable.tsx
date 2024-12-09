@@ -2,15 +2,8 @@
 
 import React from "react";
 import TableRow from "./table-row";
-import { useTaskContext } from "@/contexts/TaskContext";
 
 export default function Table() {
-  const { rows } = useTaskContext();
-  console.log(
-    "Rows in Table component:",
-    rows.map((row) => row.key)
-  );
-
   const handleAddNewTask = () => {
     window.location.href = "/task-creator"; // Navigate to task-creator page
   };
@@ -30,11 +23,11 @@ export default function Table() {
             </tr>
           </thead>
           <tbody>
-            {rows.map((row) => (
+            {/* {rows.map((row) => (
               <TableRow key={row.key} keyProp={row.key}>
                 {row.content}
               </TableRow>
-            ))}
+            ))} */}
           </tbody>
         </table>
 
