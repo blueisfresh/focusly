@@ -7,6 +7,20 @@ const navLinks = [
   },
 ];
 
+// {
+//   navLinks.map((link, index) => {
+//     return (
+//       <li
+//         key={index}
+//         className="text-xl py-4 px-6 text-slate-900 md:hover:text-slate-500 md:p-0 md:mr-6"
+//       >
+//         <a href={link.href}>{link.label}</a>
+//         {/* About Page should read the Markdown File */}
+//       </li>
+//     );
+//   });
+// }
+
 export default function Header() {
   return (
     <header>
@@ -26,18 +40,6 @@ export default function Header() {
             </h1>
           </a>
           <ul className="font-medium flex flex-col md:flex-row md:items-center p-4 mt-4 md:mt-0">
-            {" "}
-            {navLinks.map((link, index) => {
-              return (
-                <li
-                  key={index}
-                  className="text-xl py-4 px-6 text-slate-900 md:hover:text-slate-500 md:p-0 md:mr-6"
-                >
-                  <a href={link.href}>{link.label}</a>
-                  {/* About Page should read the Markdown File */}
-                </li>
-              );
-            })}
             <li className="text-xl py-4 px-6 text-slate-900 md:hover:text-slate-500 md:p-0 md:mr-6">
               <Button>Import</Button>
               {/* if no json file is read import instead */}

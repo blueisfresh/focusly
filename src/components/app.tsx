@@ -24,7 +24,7 @@ export default function App({ children }: { children?: React.ReactNode }) {
     },
     {
       key: "3",
-      content: "Presentation Prep",
+      content: "Presentation Prepration",
       description: "Prepare slides for the Monday meeting.",
     },
   ]);

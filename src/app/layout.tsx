@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { TaskProvider } from "@/contexts/TaskContext";
 import App from "@/components/app";
 
 const geistMono = localFont({
@@ -25,10 +24,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={` ${geistMono.className} bg-zinc-100 text-stone-900 flex flex-col min-h-screen `}
+        className={` ${geistMono.className} bg-zinc-100 text-stone-900 flex flex-col min-h-screen`}
       >
         <Header />
-        <App></App>
+        <App>
+          <main>{children}</main>
+        </App>
         <Footer />
       </body>
     </html>
