@@ -47,7 +47,7 @@ export default function App({ children }: { children?: React.ReactNode }) {
       <div className="flex justify-center">
         <button
           onClick={() => setIsModalOpen(true)}
-          className="max-w-[750px] mt-4 w-full text-xs font-semibold uppercase bg-gray-50 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition"
+          className="max-w-[750px] mt-4 w-full text-xs font-semibold uppercase bg-gray-50 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition mb-4"
         >
           Add Task
         </button>

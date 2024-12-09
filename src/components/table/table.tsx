@@ -6,7 +6,6 @@ import TableRow from "./table-row";
 interface Task {
   key: string;
   content: string;
-  description: string;
 }
 
 export default function Table({ rows = [] }: { rows?: Task[] }) {

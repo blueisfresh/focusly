@@ -11,9 +11,7 @@ export default function TableRow({
     <tr className="bg-white hover:bg-gray-50">
       {/* Task Name with Link */}
       <td scope="row" className="px-6 py-4 font-medium text-gray-900">
-        <Link href={`/${keyProp}`} className="text-blue-500 hover:underline">
-          {children}
-        </Link>
+        <p>{children}</p>
       </td>
       {/* Edit Icon or Image */}
       <td className="px-6 py-4 text-right w-30 hover:bg-slate-100">
