@@ -12,7 +12,7 @@ export default function Table({
   rows,
   onEditTask,
 }: {
-  rows: Task[];
+  rows?: Task[];
   onEditTask: (task: Task) => void;
 }) {
   if (!Array.isArray(rows)) {
