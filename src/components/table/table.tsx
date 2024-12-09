@@ -8,7 +8,13 @@ interface Task {
   content: string;
 }
 
-export default function Table({ rows = [] }: { rows?: Task[] }) {
+export default function Table({
+  rows,
+  onEditTask,
+}: {
+  rows: Task[];
+  onEditTask: (task: Task) => void;
+}) {
   if (!Array.isArray(rows)) {
     console.error("Expected 'rows' to be an array, but got:", rows);
     return null;
@@ -30,7 +36,7 @@ export default function Table({ rows = [] }: { rows?: Task[] }) {
           </thead>
           <tbody>
             {rows.map((task) => (
-              <TableRow key={task.key} keyProp={task.key}>
+              <TableRow key={task.key} task={task} onEditTask={onEditTask}>
                 {task.content}
               </TableRow>
             ))}
