@@ -24,7 +24,7 @@ export default function Table({ rows = [] }: { rows?: Task[] }) {
               <th scope="col" className="px-6 py-3">
                 Task
               </th>
-              <th scope="col" className="px-6 py-3 w-30">
+              <th scope="col" className="px-6 py-3 w-20">
                 Edit
               </th>
             </tr>
@@ -37,13 +37,6 @@ export default function Table({ rows = [] }: { rows?: Task[] }) {
             ))}
           </tbody>
         </table>
-
-        <button
-          onClick={() => alert("Add new task functionality here")}
-          className="mt-4 w-full text-xs font-semibold uppercase bg-gray-50 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition"
-        >
-          Add New Task
-        </button>
       </div>
     </div>
   );

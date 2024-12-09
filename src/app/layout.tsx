@@ -28,9 +28,7 @@ export default function RootLayout({
         className={` ${geistMono.className} bg-zinc-100 text-stone-900 flex flex-col min-h-screen `}
       >
         <Header />
-        <App>
-          <main className="flex-grow">{children}</main>
-        </App>
+        <App></App>
         <Footer />
       </body>
     </html>

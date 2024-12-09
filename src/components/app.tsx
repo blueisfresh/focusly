@@ -44,12 +44,14 @@ export default function App({ children }: { children?: React.ReactNode }) {
     <div>
       {children} {/* If needed, include children here */}
       <Table rows={rows} />
-      <button
-        onClick={() => setIsModalOpen(true)}
-        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-      >
-        Add Task
-      </button>
+      <div className="flex justify-center">
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="max-w-[750px] mt-4 w-full text-xs font-semibold uppercase bg-gray-50 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition"
+        >
+          Add Task
+        </button>
+      </div>
       {isModalOpen && (
         <TaskModal
           isOpen={isModalOpen} // Pass the isOpen prop
