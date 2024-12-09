@@ -6,34 +6,38 @@ interface TaskModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSave: (taskName: string, description: string) => void;
-  title: string;
-  taskNameLabel: string;
-  descriptionLabel: string;
-  saveButtonText: string;
-  cancelButtonText: string;
+  title?: string;
+  taskNameLabel?: string;
+  descriptionLabel?: string;
+  saveButtonText?: string;
+  cancelButtonText?: string;
 }
 
 export default function TaskModal({
   isOpen,
   onClose,
   onSave,
-  title,
-  taskNameLabel,
-  descriptionLabel,
-  saveButtonText,
-  cancelButtonText,
+  title = "Add New Task",
+  taskNameLabel = "Task Name",
+  descriptionLabel = "Description",
+  saveButtonText = "Save",
+  cancelButtonText = "Cancel",
 }: TaskModalProps) {
   const [taskName, setTaskName] = useState("");
-  console.log(`Task-modal.tsx Usestate - taskName: ${taskName}`);
   const [description, setDescription] = useState("");
-  console.log(`Task-modal.tsx Usestate - description: ${description}`);
 
   const handleSave = () => {
-    onSave(taskName, description); // Call the save handler with current values
-    console.log(`Task-modal.tsx - onSave: ${onSave}`);
+    if (!taskName.trim() || !description.trim()) {
+      alert("Both fields are required.");
+      return;
+    }
+    onSave(taskName, description);
+    setTaskName(""); // Reset fields
+    setDescription("");
+    onClose(); // Close modal after saving
   };
 
-  if (!isOpen) return null;
+  if (!isOpen) return null; // Only render modal when open
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -48,6 +52,7 @@ export default function TaskModal({
             value={taskName}
             onChange={(e) => setTaskName(e.target.value)}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            placeholder="Enter task name"
           />
         </div>
         <div className="mb-4">
@@ -58,6 +63,7 @@ export default function TaskModal({
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            placeholder="Enter task description"
           ></textarea>
         </div>
         <div className="flex justify-end">

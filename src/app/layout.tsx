@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { TaskProvider } from "@/contexts/TaskContext";
+import App from "@/components/app";
 
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
@@ -27,9 +28,9 @@ export default function RootLayout({
         className={` ${geistMono.className} bg-zinc-100 text-stone-900 flex flex-col min-h-screen `}
       >
         <Header />
-        <TaskProvider>
+        <App>
           <main className="flex-grow">{children}</main>
-        </TaskProvider>
+        </App>
         <Footer />
       </body>
     </html>

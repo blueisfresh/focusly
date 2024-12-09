@@ -1,7 +1,3 @@
-You're absolutely right that having a `useState` inside the `layout` would force it to become a client component. This is problematic because layouts in Next.js are designed to be server components by default for better performance. So, yes, we need to reconsider how to manage the state effectively while respecting these architectural constraints.
-
----
-
 ### Can We Use an `App` Component?
 
 Yes, we can! The idea is to use an **`App` component** as a client-side entry point for managing state. This would handle the state (like the `rows` array) and act as a parent component for `Table` and other components like `TaskModal`.
@@ -211,14 +207,3 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 5. **Flexible for Expansion**:
    - You can add additional features like editing or filtering tasks without disrupting the structure.
-
----
-
-### When to Use Context
-
-If you anticipate:
-
-- **Deeply nested components** needing access to `rows`.
-- State shared across multiple parts of the app (not just `Table` and `TaskModal`).
-
-Then a `TaskContext` might still be better, but the architecture above should suffice for most use cases without introducing unnecessary complexity.

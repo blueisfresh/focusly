@@ -2,18 +2,18 @@
 
 import React from "react";
 import TableRow from "./table-row";
-import { useTaskContext } from "@/contexts/TaskContext";
 
-export default function Table() {
-  const { rows } = useTaskContext();
-  console.log(
-    "Rows in Table component:",
-    rows.map((row) => row.key)
-  );
+interface Task {
+  key: string;
+  content: string;
+  description: string;
+}
 
-  const handleAddNewTask = () => {
-    window.location.href = "/task-creator"; // Navigate to task-creator page
-  };
+export default function Table({ rows = [] }: { rows?: Task[] }) {
+  if (!Array.isArray(rows)) {
+    console.error("Expected 'rows' to be an array, but got:", rows);
+    return null;
+  }
 
   return (
     <div className="flex justify-center">
@@ -24,22 +24,22 @@ export default function Table() {
               <th scope="col" className="px-6 py-3">
                 Task
               </th>
-              <th scope="col" className="px-6 py-3 w-20">
+              <th scope="col" className="px-6 py-3 w-30">
                 Edit
               </th>
             </tr>
           </thead>
           <tbody>
-            {rows.map((row) => (
-              <TableRow key={row.key} keyProp={row.key}>
-                {row.content}
+            {rows.map((task) => (
+              <TableRow key={task.key} keyProp={task.key}>
+                {task.content}
               </TableRow>
             ))}
           </tbody>
         </table>
 
         <button
-          onClick={handleAddNewTask}
+          onClick={() => alert("Add new task functionality here")}
           className="mt-4 w-full text-xs font-semibold uppercase bg-gray-50 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-200 transition"
         >
           Add New Task
