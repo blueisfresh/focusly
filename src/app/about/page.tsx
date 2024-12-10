@@ -19,7 +19,9 @@ export default function Page() {
           </p>
         </section>
 
-        <section className="mt-8">
+        <hr className="my-6" />
+
+        <section>
           <h2 className="text-2xl font-semibold text-gray-700 mb-4">
             Core Features
           </h2>
@@ -29,11 +31,11 @@ export default function Page() {
               Task Management
             </h3>
             <ul className="list-disc pl-6 text-gray-600">
-              <li>Add, edit, and delete tasks.</li>
+              <li>Add, edit, delete tasks.</li>
               <li>Mark tasks as complete or incomplete.</li>
               <li>
                 <strong>Task Prioritization:</strong>
-                <ul className="list-circle pl-6">
+                <ul className="list-disc pl-6">
                   <li>Assign priority levels: High, Medium, Low.</li>
                 </ul>
               </li>
@@ -47,7 +49,7 @@ export default function Page() {
             <ul className="list-disc pl-6 text-gray-600">
               <li>
                 Filter tasks by:
-                <ul className="list-circle pl-6">
+                <ul className="list-disc pl-6">
                   <li>Status: Completed, Pending.</li>
                   <li>Priority level.</li>
                 </ul>
@@ -63,12 +65,23 @@ export default function Page() {
             <ul className="list-disc pl-6 text-gray-600">
               <li>
                 Receive reminders for:
-                <ul className="list-circle pl-6">
+                <ul className="list-disc pl-6">
                   <li>Upcoming tasks.</li>
                   <li>Overdue tasks.</li>
                 </ul>
               </li>
             </ul>
+          </article>
+
+          <article className="mb-6">
+            <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              Table-Based Layout
+            </h3>
+            <p className="text-gray-600">
+              Tasks are displayed in a table format, with sorting, filtering,
+              and row-specific actions managed efficiently. Clicking on a task
+              row redirects to its detailed view.
+            </p>
           </article>
 
           <article className="mb-6">
@@ -82,35 +95,78 @@ export default function Page() {
           </article>
         </section>
 
-        <section className="mt-8">
+        <hr className="my-6" />
+
+        <section>
           <h2 className="text-2xl font-semibold text-gray-700 mb-4">
-            Data Storage Approach
+            Project Structure
           </h2>
-          <ul className="list-disc pl-6 text-gray-600">
-            <li>
-              <strong>JSON-Based Storage:</strong> Tasks will be managed and
-              structured as a JSON object.
-            </li>
-            <li>
-              <strong>Local Storage:</strong> The JSON object will be saved in
-              the browser's{" "}
-              <code className="bg-gray-100 p-1 rounded">localStorage</code> for
-              persistence.
-            </li>
-            <li>
-              <strong>JSON Structure:</strong> Building a robust and
-              well-structured JSON schema will be foundational to the project.
-            </li>
-          </ul>
+
+          <article className="mb-6">
+            <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              Folder Structure
+            </h3>
+            <pre className="bg-gray-100 p-4 rounded-md text-sm text-gray-600">
+              {`focusly/
+├── public/                  # Static assets (e.g., icons, logos)
+├── src/
+│   ├── app/                 # Pages and layouts
+│   │   ├── layout.tsx       # Layout wrapper for all pages
+│   │   ├── home/page.tsx    # Home page with TaskTable
+│   │   ├── about/page.tsx   # About the application
+│   │   ├── import/page.tsx  # Page for JSON import
+│   │   ├── task/[id]/page.tsx # Dynamic page for detailed task view
+│   │   ├── add/page.tsx     # Page to add a new task
+│   │   └── edit/[id]/page.tsx # Page to edit a task
+│   ├── components/          # Reusable UI components
+│   │   ├── TaskTable.tsx    # Table to display tasks
+│   │   ├── TaskRow.tsx      # Represents a single table row
+│   │   ├── TaskForm.tsx     # Add/Edit task form
+│   │   └── Notification.tsx # Notification popup component
+│   ├── hooks/               # Custom React hooks
+│   │   └── useNotifications.ts # Hook for managing notifications
+│   ├── store/               # Zustand store for task state
+│   │   └── taskStore.ts     # Task state management
+│   ├── types/               # TypeScript interfaces/types
+│   │   └── task.ts          # Task type definitions
+│   ├── utils/               # Utility functions
+│   │   └── validateTask.ts  # Task validation logic
+└── package.json             # Dependencies`}
+            </pre>
+          </article>
+
+          <article className="mb-6">
+            <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              Component Interactions
+            </h3>
+            <ul className="list-disc pl-6 text-gray-600">
+              <li>
+                <strong>TaskTable:</strong> Displays tasks in a table layout,
+                manages filtering, sorting, and passes tasks to `TaskRow`.
+              </li>
+              <li>
+                <strong>TaskRow:</strong> Represents a single table row, handles
+                row-specific actions, and links to task details.
+              </li>
+              <li>
+                <strong>TaskForm:</strong> Validates and processes input for
+                adding and editing tasks.
+              </li>
+              <li>
+                <strong>Notification:</strong> Handles reminders for tasks.
+              </li>
+            </ul>
+          </article>
         </section>
 
-        <section className="mt-8">
+        <hr className="my-6" />
+
+        <section>
           <h2 className="text-2xl font-semibold text-gray-700 mb-4">
             Browser Compatibility
           </h2>
           <p className="text-gray-600">
-            Focusly will be tested and optimized for compatibility with major
-            browsers:
+            Focusly is optimized for compatibility with major browsers:
           </p>
           <ul className="list-disc pl-6 text-gray-600">
             <li>Google Chrome</li>
@@ -120,68 +176,19 @@ export default function Page() {
           </ul>
         </section>
 
-        <section className="mt-8">
+        <hr className="my-6" />
+
+        <section>
           <h2 className="text-2xl font-semibold text-gray-700 mb-4">
             Error Handling
           </h2>
-          <p className="text-gray-600">
-            The application will handle the following scenarios gracefully:
-          </p>
-          <ol className="list-decimal pl-6 text-gray-600">
+          <ul className="list-disc pl-6 text-gray-600">
             <li>
-              <strong>Invalid JSON Import:</strong>
-              <ul className="list-circle pl-6">
-                <li>
-                  Validate imported JSON files for correct structure and data
-                  types.
-                </li>
-                <li>
-                  Show user-friendly error messages for invalid or corrupted
-                  files.
-                </li>
-              </ul>
+              Invalid JSON imports are validated and rejected if incorrect.
             </li>
-            <li>
-              <strong>Local Storage Full:</strong>
-              <ul className="list-circle pl-6">
-                <li>
-                  Notify the user when{" "}
-                  <code className="bg-gray-100 p-1 rounded">localStorage</code>{" "}
-                  reaches its limit.
-                </li>
-                <li>Suggest exporting data to a JSON file to free up space.</li>
-              </ul>
-            </li>
-            <li>
-              <strong>Task Overlap:</strong>
-              <ul className="list-circle pl-6">
-                <li>
-                  Warn users if tasks with overlapping due dates are prioritized
-                  as High.
-                </li>
-              </ul>
-            </li>
-            <li>
-              <strong>Notification Permission Denied:</strong>
-              <ul className="list-circle pl-6">
-                <li>
-                  Notify the user when browser notification permissions are
-                  denied.
-                </li>
-                <li>Provide steps to enable notifications.</li>
-              </ul>
-            </li>
-            <li>
-              <strong>Browser Incompatibility:</strong>
-              <ul className="list-circle pl-6">
-                <li>
-                  Display a message if the browser lacks required features
-                  (e.g., outdated versions).
-                </li>
-                <li>Suggest upgrading the browser for a better experience.</li>
-              </ul>
-            </li>
-          </ol>
+            <li>Users are notified when browser notifications are denied.</li>
+            <li>Clear steps are provided for enabling browser features.</li>
+          </ul>
         </section>
       </article>
     </div>

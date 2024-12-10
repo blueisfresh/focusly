@@ -14,7 +14,8 @@
 
 #### JSON
 
-- [x] JSON File reader
+- [x] JSON File reader & exporter
+- [ ] update the about page with the new readme file
 
 #### TaskTable
 
