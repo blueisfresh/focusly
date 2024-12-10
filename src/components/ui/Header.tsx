@@ -1,3 +1,9 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { parseJSONFile } from "../../utils/jsonHandler";
+import useTaskStore from "../../store/taskStore";
+
 const navLinks = [
   {
     href: "/about",
@@ -6,6 +12,47 @@ const navLinks = [
 ];
 
 export default function Header() {
+  const setTasks = useTaskStore((state) => state.setTasks);
+  const exportTasks = useTaskStore((state) => state.exportTasks);
+  const tasks = useTaskStore((state) => state.tasks);
+
+  const [fileLoaded, setFileLoaded] = useState<boolean>(false);
+
+  useEffect(() => {
+    console.log("Tasks updated:", tasks); // Logs whenever tasks change
+  }, [tasks]);
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("handleFileUpload triggered");
+    const files = event.target.files;
+    if (files && files[0]) {
+      const file = files[0];
+
+      console.log(`file selected: ${file.name}`);
+
+      // Parse the JSON file
+      parseJSONFile(file, (parsedData) => {
+        console.log("Parsed Data:", parsedData);
+
+        // Update Zustand state with the parsed tasks
+        setTasks(parsedData);
+
+        // Set fileLoaded to true only after tasks are set
+        setFileLoaded(true);
+      });
+    }
+  };
+
+  const handleLabelClick = () => {
+    console.log("handleLabelClick triggered");
+    console.log(`fileLoaded: ${fileLoaded}`);
+    if (fileLoaded) {
+      // If "Export", call the export function
+      console.log("Exporting tasks...");
+      exportTasks();
+    }
+  };
+
   return (
     <header>
       <nav className="m-6">
@@ -38,9 +85,23 @@ export default function Header() {
             })}
             <li className="text-xl py-4 px-6 text-slate-900 md:hover:text-slate-500 md:p-0 md:mr-6">
               {/* if no json file is read import instead */}
-              <button className="text-white text-xl bg-slate-700 hover:bg-slate-800 font-medium rounded-lg px-5 py-2.5 me-2">
-                Import
-              </button>
+
+              <label
+                htmlFor={!fileLoaded ? "file-upload" : undefined}
+                onClick={handleLabelClick}
+                className="text-white text-xl bg-slate-700 hover:bg-slate-800 font-medium rounded-lg px-5 py-2.5 cursor-pointer"
+              >
+                {fileLoaded ? `Export` : "Import"}
+              </label>
+
+              {/* Completely Hidden File Input */}
+              <input
+                id="file-upload"
+                type="file"
+                accept=".json"
+                onChange={handleFileUpload}
+                className="hidden"
+              />
             </li>
           </ul>
         </div>

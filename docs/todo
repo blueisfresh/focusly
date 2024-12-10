@@ -1,16 +1,20 @@
 ### **Project Setup**
 
-1. [ ] Initialize a new Next.js project.
+1. [x] Initialize a new Next.js project.
    - Use TypeScript: `npx create-next-app@latest focusly --typescript`.
-2. [ ] Set up the folder structure:
+2. [x] Set up the folder structure:
    - Create directories for `components`, `hooks`, `store`, `types`, and `utils`.
-3. [ ] Install dependencies:
+3. [x] Install dependencies:
    - Zustand: `npm install zustand`.
    - Optional: Other libraries for styling, like Tailwind CSS or CSS Modules.
 
 ---
 
 ### **UI Components**
+
+#### JSON
+
+- [x] JSON File reader
 
 #### TaskTable
 

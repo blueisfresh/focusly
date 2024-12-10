@@ -5,7 +5,7 @@ import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
+  src: "/fonts/GeistMonoVF.woff", // Correct path for a file in public/fonts
   variable: "--font-geist-mono",
   weight: "100 900",
 });
