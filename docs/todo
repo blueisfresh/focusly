@@ -16,21 +16,25 @@
 
 - [x] JSON File reader & exporter
 - [x] update the about page with the new readme file
+- [x] favicon rendering properly
+- [ ] Add completed checkbox -> event listener to immidiately change the zustand
+- [ ] Icons for importancy inside the TaskRow
 - [ ] BUG: when loaded file in the main page and open the add page the previously loaded json is being cleared -> need to load it again
 
 #### TaskTable
 
 4. [ ] Create `TaskTable.tsx`:
    - [x] Render a table with right columns.
-   - [ ] Render tablerows with right columns.
+   - [x] Render tablerows with right columns.
    - [x] Add an **"Add Task"** button at the top or bottom of the table.
-   - [ ] Integrate Zustand to fetch and display tasks from the store.
+   - [x] Integrate Zustand to fetch and display tasks from the store.
+   - [ ] Anchor tag leading to a detailed view -> Only limited size from characters displayed
    - [ ] Render a table with sorting and filtering functionality.
 
 #### TaskRow
 
 5. [ ] Create `TaskRow.tsx`:
-   - [ ] Display task data (title, due date, priority, etc.).
+   - [x] Display task data (title, due date, priority, etc.).
    - [ ] Add **Edit** and **Delete** buttons.
    - [ ] Use Zustand to handle task deletion (`deleteTask`).
    - [ ] Redirect to `/edit/[id]` when **Edit** is clicked.

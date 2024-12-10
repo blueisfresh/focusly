@@ -2,8 +2,11 @@
 
 import React from "react";
 import TableRow from "./TaskRow";
+import useTaskStore from "@/store/taskStore";
 
 export default function TaskTable() {
+  const tasks = useTaskStore((state) => state.tasks);
+
   const handleAddNewTask = () => {
     window.location.href = "/add"; // Navigate to task-creator page
   };
@@ -14,29 +17,39 @@ export default function TaskTable() {
         <table className="w-full table-fixed text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="px-6 py-3 w-40 text-left">
                 Task
               </th>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="px-6 py-3 w-32 text-left">
                 Priority
               </th>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="px-6 py-3 w-36 text-left">
                 Due Date
               </th>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="px-6 py-3 w-36 text-left">
                 Completed
               </th>
-              <th scope="col" className="px-6 py-3 w-20">
+              <th scope="col" className="px-6 py-3 w-20 text-center">
                 Edit
+              </th>
+              <th scope="col" className="px-6 py-3 w-20 text-right">
+                Delete
               </th>
             </tr>
           </thead>
+
           <tbody>
-            {/* {rows.map((row) => (
-              <TableRow key={row.key} keyProp={row.key}>
-                {row.content}
+            {/* keyProp={task.id */}
+            {tasks.map((task) => (
+              <TableRow key={task.id}>
+                <>
+                  <div>{task.title}</div>
+                  <div>{task.priority}</div>
+                  <div>{task.dueDate}</div>
+                  <div>{task.completed ? "Completed" : "Not Completed"}</div>
+                </>
               </TableRow>
-            ))} */}
+            ))}
           </tbody>
         </table>
 
