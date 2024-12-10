@@ -114,7 +114,6 @@ export default function Page() {
 │   │   ├── layout.tsx       # Layout wrapper for all pages
 │   │   ├── home/page.tsx    # Home page with TaskTable
 │   │   ├── about/page.tsx   # About the application
-│   │   ├── import/page.tsx  # Page for JSON import
 │   │   ├── task/[id]/page.tsx # Dynamic page for detailed task view
 │   │   ├── add/page.tsx     # Page to add a new task
 │   │   └── edit/[id]/page.tsx # Page to edit a task

@@ -15,14 +15,17 @@
 #### JSON
 
 - [x] JSON File reader & exporter
-- [ ] update the about page with the new readme file
+- [x] update the about page with the new readme file
+- [ ] BUG: when loaded file in the main page and open the add page the previously loaded json is being cleared -> need to load it again
 
 #### TaskTable
 
 4. [ ] Create `TaskTable.tsx`:
-   - [ ] Render a table with sorting and filtering functionality.
-   - [ ] Add an **"Add Task"** button at the top or bottom of the table.
+   - [x] Render a table with right columns.
+   - [ ] Render tablerows with right columns.
+   - [x] Add an **"Add Task"** button at the top or bottom of the table.
    - [ ] Integrate Zustand to fetch and display tasks from the store.
+   - [ ] Render a table with sorting and filtering functionality.
 
 #### TaskRow
 

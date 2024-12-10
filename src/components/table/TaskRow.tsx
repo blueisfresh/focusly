@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function TableRow({
+export default function TaskRow({
   children,
   keyProp,
 }: {
@@ -14,6 +14,15 @@ export default function TableRow({
         <Link href={`/${keyProp}`} className="text-blue-500 hover:underline">
           {children}
         </Link>
+      </td>
+      <td scope="row" className="px-6 py-4 font-medium text-gray-900">
+        <p>Priority</p>
+      </td>
+      <td scope="row" className="px-6 py-4 font-medium text-gray-900">
+        <p>Due Date</p>
+      </td>
+      <td scope="row" className="px-6 py-4 font-medium text-gray-900">
+        <p>Completed</p>
       </td>
       {/* Edit Icon or Image */}
       <td className="px-6 py-4 text-right w-30 hover:bg-slate-100">
