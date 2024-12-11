@@ -16,6 +16,9 @@ const useTaskStore = create<TaskStore>((set: any) => ({
   setTasks: (newTasks) => {
     console.log("Setting new tasks:", newTasks); // Log here
     set({ tasks: newTasks });
+
+    localStorage.setItem("tasks", JSON.stringify(newTasks)); // Store in localStorage
+    console.log("Tasks saved to localStorage"); // Log here
   },
 
   // Import tasks (merge with existing tasks, prevent duplicates by ID)
@@ -30,7 +33,10 @@ const useTaskStore = create<TaskStore>((set: any) => ({
     })),
 
   // Clear all tasks
-  clearTasks: () => set({ tasks: [] }),
+  clearTasks: () => {
+    localStorage.removeItem("tasks"); // Clear localStorage
+    set({ tasks: [] });
+  },
 
   exportTasks: () => {
     // Access tasks from Zustand

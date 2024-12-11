@@ -19,7 +19,7 @@
 - [x] favicon rendering properly
 - [ ] Add completed checkbox -> event listener to immidiately change the zustand
 - [ ] Icons for importancy inside the TaskRow
-- [ ] BUG: when loaded file in the main page and open the add page the previously loaded json is being cleared -> need to load it again
+- [x] BUG: when loaded file in the main page and open the add page the previously loaded json is being cleared -> need to load it again -> **solved using local storage**
 
 #### TaskTable
 

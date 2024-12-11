@@ -3,9 +3,16 @@
 import React from "react";
 import TableRow from "./TaskRow";
 import useTaskStore from "@/store/taskStore";
+import { Task } from "@/types/task";
 
 export default function TaskTable() {
   const tasks = useTaskStore((state) => state.tasks);
+  const storedTasks = localStorage.getItem("tasks"); // Get tasks from localStorage
+  let parsedTasks = undefined;
+
+  if (storedTasks) {
+    parsedTasks = JSON.parse(storedTasks);
+  }
 
   const handleAddNewTask = () => {
     window.location.href = "/add"; // Navigate to task-creator page
@@ -40,7 +47,7 @@ export default function TaskTable() {
 
           <tbody>
             {/* keyProp={task.id */}
-            {tasks.map((task) => (
+            {parsedTasks.map((task: Task) => (
               <TableRow key={task.id}>
                 <>
                   <div>{task.title}</div>

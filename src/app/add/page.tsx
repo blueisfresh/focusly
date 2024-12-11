@@ -5,7 +5,8 @@ import useTaskStore from "../../store/taskStore";
 
 export default function Page() {
   const addTask = useTaskStore((state) => state.setTasks); // Zustand add task function
-  const tasks = useTaskStore((state) => state.tasks);
+  const tasks = useTaskStore((state) => state.tasks); // Zustand tasks array
+  const storedTasks = localStorage.getItem("tasks"); // Get tasks from localStorage
 
   // Local state for form inputs
   const [title, setTitle] = useState("");
@@ -27,10 +28,16 @@ export default function Page() {
       title,
       priority,
       dueDate,
+      completed: false, // Add the completed property
     };
 
+    if (storedTasks) {
+      const parsedTasks = JSON.parse(storedTasks);
+      addTask([...parsedTasks, newTask]);
+    }
+
     // Add new task to Zustand
-    addTask([...tasks, newTask]);
+    // addTask([...tasks, newTask]);
 
     // Clear form fields
     setTitle("");
