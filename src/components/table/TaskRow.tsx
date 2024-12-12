@@ -19,10 +19,10 @@ export default function TaskRow({
   }
 
   // Log the fragment children array
-  console.log(
-    "The fragment children array inside the TaskRow component is:",
-    fragmentChildren
-  );
+  // console.log(
+  //   "The fragment children array inside the TaskRow component is:",
+  //   fragmentChildren
+  // );
 
   // Extract priority from fragmentChildren
   const priority = fragmentChildren[1]?.props.children;

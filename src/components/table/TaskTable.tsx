@@ -1,18 +1,26 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import TableRow from "./TaskRow";
 import useTaskStore from "@/store/taskStore";
 import { Task } from "@/types/task";
 
 export default function TaskTable() {
-  const tasks = useTaskStore((state) => state.tasks);
-  const storedTasks = localStorage.getItem("tasks"); // Get tasks from localStorage
-  let parsedTasks = undefined;
+  const tasks = useTaskStore((state) => state.tasks); // gets the tasks from taskStore (ZUSTAND)
+  const setTasks = useTaskStore((state) => state.setTasks); // updates the tasks from taskStore (ZUSTAND)
 
-  if (storedTasks) {
-    parsedTasks = JSON.parse(storedTasks);
-  }
+  const [parsedTasks, setParsedTasks] = React.useState<Task[]>([]); // new used State for parsed tasks from localStorage
+
+  useEffect(() => {
+    const storedTasks = localStorage.getItem("tasks"); // Get tasks from localStorage
+    if (storedTasks) {
+      const parsed = JSON.parse(storedTasks);
+      setParsedTasks(parsed);
+      setTasks(parsed); // Update the tasks in the store (ZUSTAND)
+    } else {
+      setParsedTasks([]); // Set parsedTasks to an empty array if no tasks are stored
+    }
+  }, []);
 
   const handleAddNewTask = () => {
     window.location.href = "/add"; // Navigate to task-creator page

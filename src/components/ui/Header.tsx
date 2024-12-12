@@ -15,12 +15,23 @@ export default function Header() {
   const setTasks = useTaskStore((state) => state.setTasks);
   const exportTasks = useTaskStore((state) => state.exportTasks);
   const tasks = useTaskStore((state) => state.tasks);
+  const localTasks = localStorage.getItem("tasks");
 
   const [fileLoaded, setFileLoaded] = useState<boolean>(false);
 
   useEffect(() => {
     console.log("Tasks updated:", tasks); // Logs whenever tasks change
   }, [tasks]);
+
+  useEffect(() => {
+    if (localTasks) {
+      const parsedLocalTasks = JSON.parse(localTasks); // Converts the string back into a JavaScript object/array
+      setFileLoaded(true); // Set fileLoaded to true if tasks are stored in localStorage
+      console.log(parsedLocalTasks); // Logs the parsed tasks to the console
+      setTasks(parsedLocalTasks); // Update Zustand store with parsed tasks
+      console.log(`Tasks should be passed to Zustand compoent: ${tasks}`);
+    }
+  }, [localTasks, setTasks]); // Dependencies to re-run this effect if they change
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log("handleFileUpload triggered");
@@ -87,7 +98,7 @@ export default function Header() {
               {/* if no json file is read import instead */}
 
               <label
-                htmlFor={!fileLoaded ? "file-upload" : undefined}
+                htmlFor={!fileLoaded ? "file-upload" : undefined} //if file loaded false then do htmlFor file-upload
                 onClick={handleLabelClick}
                 className="text-white text-xl bg-slate-700 hover:bg-slate-800 font-medium rounded-lg px-5 py-2.5 cursor-pointer"
               >

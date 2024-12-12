@@ -177,3 +177,42 @@ clearTasks: () => {
   set({ tasks: [] }); // Clear Zustand or React state
 },
 ```
+
+## Debugging Infinite rendering
+
+### Key Takeaways:
+
+1. **Never Access Browser-Specific APIs (like `localStorage`) Without `useEffect` in React:**
+
+   - React runs code both on the server (during SSR) and on the client. Browser-specific APIs (`localStorage`, `window`, `document`) don't exist in the server environment, so using them directly without guarding will lead to runtime errors.
+   - Always wrap browser-specific operations in `useEffect`, which runs only on the client.
+
+2. **Avoid Naked `if` Statements for Side Effects:**
+
+   - If you're performing side effects (like fetching data, setting state, or interacting with the DOM), always place them inside `useEffect` or other lifecycle hooks. Naked `if` statements in functional components can lead to re-renders, infinite loops, or SSR issues.
+
+3. **State Changes Can Trigger Infinite Loops:**
+
+   - If you update state directly based on the current state during render, React will keep re-rendering the component indefinitely. This is what happened when `parsedTasks` or `setTasks` caused React to re-render in a loop.
+
+4. **Guard Against SSR Incompatibilities:**
+
+   - When working with tools like Next.js (which use SSR by default), always check if you're in the browser environment using `typeof window !== "undefined"`.
+   - Example:
+     ```tsx
+     if (typeof window !== "undefined") {
+       // Safe to use browser APIs here
+     }
+     ```
+
+5. **Debugging Steps Are Important:**
+   - You can use `console.log` strategically to confirm when and how code executes. In this case, logging showed that the `if` statement caused re-renders, helping pinpoint the issue.
+
+### Rule of Thumb:
+
+- **Side effects** (anything that interacts with the browser or modifies state) → **Always in `useEffect`**.
+- **Pure JSX/TSX rendering logic** (calculating or displaying values) → Safe in the component body.
+
+## Explantion and best implemtation on hotkeys
+
+- https://www.danstroot.com/snippets/nextjs-hotkeys

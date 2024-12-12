@@ -20,7 +20,10 @@
 - [ ] Add completed checkbox -> event listener to immidiately change the zustand
 - [ ] Icons for importancy inside the TaskRow
 - [x] BUG: when loaded file in the main page and open the add page the previously loaded json is being cleared -> need to load it again -> **solved using local storage**
-- [ ] if data loaded inside browser -> Export -> Rows still needed?
+- [x] if data loaded inside browser -> Export -> Rows still needed?
+- [ ] Add keybinding to clear localstorage. Document it -> display it on the website?
+- [ ] BUG: turn off refreshign when ctrl i is pressed to clear localstorage
+- [ ] Add shortcuts -> look at article: https://www.fadocodecamp.com/posts/nextjs-shortcut-navigation
 
 #### TaskTable
 
