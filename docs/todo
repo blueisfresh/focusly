@@ -22,9 +22,15 @@
 - [x] Add keybinding to clear localstorage. Document it -> display it on the website?
 - [x] if strg i pressed then from export -> import
 - [x] BUG: when strg i refresh website
-- [ ] Add shortcuts -> How to: https://www.fadocodecamp.com/posts/nextjs-shortcut-navigation
+
+---
+
 - [ ] Add completed checkbox -> event listener to immidiately change the zustand
 - [ ] Icons for importancy inside the TaskRow
+
+---
+
+- [ ] Add shortcuts -> How to: https://www.fadocodecamp.com/posts/nextjs-shortcut-navigation
 
 #### TaskTable
 

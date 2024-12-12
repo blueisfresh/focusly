@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import TableRow from "./TaskRow";
+import TaskRow from "./TaskRow";
 import useTaskStore from "@/store/taskStore";
 import { Task } from "@/types/task";
 
@@ -50,17 +50,20 @@ export default function TaskTable() {
             </tr>
           </thead>
 
+          {/* function switch case return div with the server image */}
+
           <tbody>
             {/* keyProp={task.id */}
             {tasks.map((task: Task) => (
-              <TableRow key={task.id}>
+              <TaskRow key={task.id}>
                 <>
+                  {/* td instead of divs */}
                   <div>{task.title}</div>
                   <div>{task.priority}</div>
                   <div>{task.dueDate}</div>
                   <div>{task.completed ? "Completed" : "Not Completed"}</div>
                 </>
-              </TableRow>
+              </TaskRow>
             ))}
           </tbody>
         </table>
