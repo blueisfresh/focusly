@@ -12,13 +12,10 @@ export default function TaskTable() {
   const [parsedTasks, setParsedTasks] = React.useState<Task[]>([]); // new used State for parsed tasks from localStorage
 
   useEffect(() => {
-    const storedTasks = localStorage.getItem("tasks"); // Get tasks from localStorage
-    if (storedTasks) {
-      const parsed = JSON.parse(storedTasks);
-      setParsedTasks(parsed);
-      setTasks(parsed); // Update the tasks in the store (ZUSTAND)
+    if (tasks) {
+      setTasks(tasks); // Update the tasks in the store (ZUSTAND)
     } else {
-      setParsedTasks([]); // Set parsedTasks to an empty array if no tasks are stored
+      setTasks([]); // Set parsedTasks to an empty array if no tasks are stored
     }
   }, []);
 
@@ -55,7 +52,7 @@ export default function TaskTable() {
 
           <tbody>
             {/* keyProp={task.id */}
-            {parsedTasks.map((task: Task) => (
+            {tasks.map((task: Task) => (
               <TableRow key={task.id}>
                 <>
                   <div>{task.title}</div>

@@ -22,6 +22,7 @@
 - [x] BUG: when loaded file in the main page and open the add page the previously loaded json is being cleared -> need to load it again -> **solved using local storage**
 - [x] if data loaded inside browser -> Export -> Rows still needed?
 - [x] Add keybinding to clear localstorage. Document it -> display it on the website?
+- [ ] if strg i pressed then from export -> import
 - [ ] BUG: when strg i refresh website
 - [ ] Add shortcuts -> How to: https://www.fadocodecamp.com/posts/nextjs-shortcut-navigation
 

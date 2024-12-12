@@ -1,8 +1,19 @@
 import { create } from "zustand";
 import { Task } from "../types/task";
 
+const LOCAl_STORAGE_KEY = "tasks";
+
+const getInitialTasks = () => {
+  const storedTasks = localStorage.getItem(LOCAl_STORAGE_KEY); // get data from localStorage
+  return storedTasks ? JSON.parse(storedTasks) : []; // return the values from it
+};
+
 interface TaskStore {
   tasks: Task[];
+  /////////////////////////////
+  isFileLoaded: boolean;
+  setfileLoaded: (state: boolean) => void;
+  /////////////////////////////
   setTasks: (newTasks: Task[]) => void;
   clearTasks: () => void;
   exportTasks: () => void;
@@ -10,20 +21,27 @@ interface TaskStore {
 
 const useTaskStore = create<TaskStore>((set: any) => ({
   // Array that holds all tasks
-  tasks: [],
+  tasks: getInitialTasks(),
+
+  isFileLoaded: false,
+
+  setfileLoaded: (state: boolean) => {
+    set({ isFileLoaded: state }); // Ensure the key matches the state property name
+  },
 
   // Set tasks directly (overwrite existing tasks)
   setTasks: (newTasks) => {
-    console.log(`Setting tasks to: ${newTasks}`);
-    localStorage.setItem("tasks", JSON.stringify(newTasks)); // Save tasks to localStorage
+    // console.log(`Setting tasks to: ${newTasks}`);
+    localStorage.setItem(LOCAl_STORAGE_KEY, JSON.stringify(newTasks)); // Save tasks to localStorage
     set({ tasks: newTasks });
     console.log("Tasks succesfully saved to localStorage");
   },
 
   // Clear all tasks
   clearTasks: () => {
-    localStorage.removeItem("tasks"); // Clear localStorage
+    localStorage.removeItem(LOCAl_STORAGE_KEY); // Clear localStorage
     set({ tasks: [] });
+    console.log("Tasks succesfully cleared from localStorage");
   },
 
   exportTasks: () => {
@@ -48,6 +66,7 @@ const useTaskStore = create<TaskStore>((set: any) => ({
 
     // Revoke the URL after download to free up memory
     URL.revokeObjectURL(url);
+    console.log("Tasks succesfully exported to JSON file");
   },
 }));
 
