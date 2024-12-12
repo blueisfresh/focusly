@@ -91,6 +91,7 @@ focusly/
    - Validates input using `validateTask.ts`.
 
 4. **Notification**
+
    - Displays reminders for upcoming or overdue tasks.
 
 ### **State Management with Zustand**
@@ -127,6 +128,14 @@ Focusly is optimized for:
 - **Invalid Inputs**: User-friendly validation errors are shown for incorrect data.
 - **Notification Denial**: Clear steps provided to enable browser notifications.
 - **JSON Import Errors**: Invalid files are rejected with detailed error messages.
+
+---
+
+## **Local Storage Feature**
+
+- All tasks are saved in the browser's local storage.
+- This ensures data persistence, so even if the user accidentally refreshes the page or closes the browser, the tasks remain intact.
+- Users can safely resume their task management without re-importing their data.
 
 ---
 
