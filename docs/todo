@@ -20,6 +20,7 @@
 - [ ] Add completed checkbox -> event listener to immidiately change the zustand
 - [ ] Icons for importancy inside the TaskRow
 - [x] BUG: when loaded file in the main page and open the add page the previously loaded json is being cleared -> need to load it again -> **solved using local storage**
+- [ ] if data loaded inside browser -> Export -> Rows still needed?
 
 #### TaskTable
 
@@ -28,14 +29,13 @@
    - [x] Render tablerows with right columns.
    - [x] Add an **"Add Task"** button at the top or bottom of the table.
    - [x] Integrate Zustand to fetch and display tasks from the store.
-   - [ ] Anchor tag leading to a detailed view -> Only limited size from characters displayed
    - [ ] Render a table with sorting and filtering functionality.
 
 #### TaskRow
 
 5. [ ] Create `TaskRow.tsx`:
    - [x] Display task data (title, due date, priority, etc.).
-   - [ ] Add **Edit** and **Delete** buttons.
+   - [x] Add **Edit** and **Delete** buttons.
    - [ ] Use Zustand to handle task deletion (`deleteTask`).
    - [ ] Redirect to `/edit/[id]` when **Edit** is clicked.
 
@@ -51,14 +51,14 @@
 
 7. [ ] Implement `/` (home page):
 
-   - [ ] Use `TaskTable` to display tasks.
+   - [x] Use `TaskTable` to display tasks.
    - [ ] Ensure all tasks are fetched and displayed correctly.
 
 8. [ ] Implement `/add` (add task page):
 
-   - [ ] Create a form for adding tasks.
-   - [ ] Use `validateTask.ts` to validate inputs.
-   - [ ] Use Zustand to add new tasks (`addTask`).
+   - [x] Create a form for adding tasks.
+   - [x] Use `validateTask.ts` to validate inputs.
+   - [x] Use Zustand to add new tasks (`addTask`).
 
 9. [ ] Implement `/edit/[id]` (edit task page):
 
@@ -72,14 +72,15 @@
     - [ ] Fetch the task details from Zustand using the dynamic `id` from the route.
     - [ ] Display all task details in a readable format.
 
-11. [ ] Implement `/import` (import JSON page):
+11. [x] Implement `/import` (import JSON page):
 
-    - [ ] Create a file upload form to import tasks from a JSON file.
-    - [ ] Validate the JSON structure before importing.
-    - [ ] Use Zustand to populate tasks (`setTasks`).
+    - [x] Create a file upload form to import tasks from a JSON file.
+    - [x] Validate the JSON structure before importing.
+    - [x] Use Zustand to populate tasks (`setTasks`).
 
 12. [ ] Implement `/about` (about page):
-    - [ ] Write a brief description of the app and its purpose.
+    - [x] Write a brief description of the app and its purpose.
+    - [ ] Same spacing at about page as todo page
 
 ---
 
