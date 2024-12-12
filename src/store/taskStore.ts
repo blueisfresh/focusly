@@ -4,33 +4,21 @@ import { Task } from "../types/task";
 interface TaskStore {
   tasks: Task[];
   setTasks: (newTasks: Task[]) => void;
-  importTasks: (importedTasks: Task[]) => void;
   clearTasks: () => void;
   exportTasks: () => void;
 }
 
 const useTaskStore = create<TaskStore>((set: any) => ({
+  // Array that holds all tasks
   tasks: [],
 
   // Set tasks directly (overwrite existing tasks)
   setTasks: (newTasks) => {
-    console.log("Setting new tasks:", newTasks); // Log here
+    console.log(`Setting tasks to: ${newTasks}`);
+    localStorage.setItem("tasks", JSON.stringify(newTasks)); // Save tasks to localStorage
     set({ tasks: newTasks });
-
-    localStorage.setItem("tasks", JSON.stringify(newTasks)); // Store in localStorage
-    console.log("Tasks saved to localStorage"); // Log here
+    console.log("Tasks succesfully saved to localStorage");
   },
-
-  // Import tasks (merge with existing tasks, prevent duplicates by ID)
-  importTasks: (importedTasks) =>
-    set((state: any) => ({
-      tasks: [
-        ...state.tasks,
-        ...importedTasks.filter(
-          (newTask) => !state.tasks.some((task: any) => task.id === newTask.id)
-        ),
-      ],
-    })),
 
   // Clear all tasks
   clearTasks: () => {

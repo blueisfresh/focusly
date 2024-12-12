@@ -21,9 +21,9 @@
 - [ ] Icons for importancy inside the TaskRow
 - [x] BUG: when loaded file in the main page and open the add page the previously loaded json is being cleared -> need to load it again -> **solved using local storage**
 - [x] if data loaded inside browser -> Export -> Rows still needed?
-- [ ] Add keybinding to clear localstorage. Document it -> display it on the website?
-- [ ] BUG: turn off refreshign when ctrl i is pressed to clear localstorage
-- [ ] Add shortcuts -> look at article: https://www.fadocodecamp.com/posts/nextjs-shortcut-navigation
+- [x] Add keybinding to clear localstorage. Document it -> display it on the website?
+- [ ] BUG: when strg i refresh website
+- [ ] Add shortcuts -> How to: https://www.fadocodecamp.com/posts/nextjs-shortcut-navigation
 
 #### TaskTable
 
