@@ -19,27 +19,10 @@ export default function TaskRow({
   }
 
   // Log the fragment children array
-  // console.log(
-  //   "The fragment children array inside the TaskRow component is:",
-  //   fragmentChildren
-  // );
-
-  // Extract priority from fragmentChildren
-  const priority = fragmentChildren[1]?.props.children;
-
-  // Determine the image URL based on priority
-  const getPriorityImage = (priority: any) => {
-    switch (priority) {
-      case "High":
-        return "https://utfs.io/f/MOA66ou6ZmXlRmeSRYBLSkIZTfAFlrzPwRWxGtMy02nKCovm";
-      case "Medium":
-        return "https://utfs.io/f/MOA66ou6ZmXloe1KhUX5AQLy6P9ghUbHvNeiJEVBKnWu74R2";
-      case "Low":
-        return "https://utfs.io/f/MOA66ou6ZmXluXeQf2LodR0DtqXI9bGcx48gCv16aSYJen5k";
-      default:
-        return "https://utfs.io/f/MOA66ou6ZmXl0evFk0Ie9YtB5DXH3yuvq2SMFNOfrKwsxh4E";
-    }
-  };
+  console.log(
+    "The fragment children array inside the TaskRow component is:",
+    fragmentChildren
+  );
 
   return (
     <tr className="bg-white hover:bg-gray-50">

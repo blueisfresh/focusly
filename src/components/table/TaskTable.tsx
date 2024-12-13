@@ -9,18 +9,39 @@ export default function TaskTable() {
   const tasks = useTaskStore((state) => state.tasks); // gets the tasks from taskStore (ZUSTAND)
   const setTasks = useTaskStore((state) => state.setTasks); // updates the tasks from taskStore (ZUSTAND)
 
-  const [parsedTasks, setParsedTasks] = React.useState<Task[]>([]); // new used State for parsed tasks from localStorage
-
   useEffect(() => {
     if (tasks) {
       setTasks(tasks); // Update the tasks in the store (ZUSTAND)
     } else {
       setTasks([]); // Set parsedTasks to an empty array if no tasks are stored
     }
-  }, []);
+  }, []); // useEffect runs only once
 
+  // Method: for navigating to add Page
   const handleAddNewTask = () => {
-    window.location.href = "/add"; // Navigate to task-creator page
+    window.location.href = "/add";
+  };
+
+  // Method: Display right image based on the priority
+  const getPriorityImage = (priority: string) => {
+    switch (priority.toLowerCase()) {
+      case "high":
+        return "https://utfs.io/f/MOA66ou6ZmXlRmeSRYBLSkIZTfAFlrzPwRWxGtMy02nKCovm";
+      case "medium":
+        return "https://utfs.io/f/MOA66ou6ZmXloe1KhUX5AQLy6P9ghUbHvNeiJEVBKnWu74R2  ";
+      case "low":
+        return "https://utfs.io/f/MOA66ou6ZmXluXeQf2LodR0DtqXI9bGcx48gCv16aSYJen5k";
+      default:
+        return "https://utfs.io/f/MOA66ou6ZmXl0evFk0Ie9YtB5DXH3yuvq2SMFNOfrKwsxh4E";
+    }
+  };
+
+  // Method: Toggle the task completed status
+  const handleToggleCompleted = (task: Task) => {
+    const updatedTasks = tasks.map((t) =>
+      t.id === task.id ? { ...t, completed: !t.completed } : t
+    );
+    setTasks(updatedTasks); // Update Zustand store
   };
 
   return (
@@ -53,15 +74,26 @@ export default function TaskTable() {
           {/* function switch case return div with the server image */}
 
           <tbody>
-            {/* keyProp={task.id */}
             {tasks.map((task: Task) => (
               <TaskRow key={task.id}>
                 <>
-                  {/* td instead of divs */}
-                  <div>{task.title}</div>
-                  <div>{task.priority}</div>
-                  <div>{task.dueDate}</div>
-                  <div>{task.completed ? "Completed" : "Not Completed"}</div>
+                  <td>{task.title}</td>
+                  <td>
+                    <img
+                      src={getPriorityImage(task.priority)}
+                      alt={`${task.priority} priority`}
+                      className="h-6 w-6"
+                    />
+                  </td>
+                  <td>{task.dueDate}</td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={task.completed}
+                      onChange={() => handleToggleCompleted(task)}
+                      className="cursor-pointer"
+                    />
+                  </td>
                 </>
               </TaskRow>
             ))}

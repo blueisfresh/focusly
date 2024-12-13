@@ -27,15 +27,11 @@ export default function Header() {
   useEffect(() => {
     if (tasks.length !== 0) {
       setFileLoaded(true); // Set fileLoaded to true if tasks are stored in localStorage -> looking inside Zustand component
-      console.log(isFileLoaded);
-      console.log(tasks); // Logs the parsed tasks to the console
       setTasks(tasks); // Update Zustand store with parsed tasks
-      console.log(`Tasks should be passed to Zustand compoent: ${tasks}`);
     }
   }, [tasks, setTasks]); // Dependencies to re-run this effect if they change
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("handleFileUpload triggered");
     const files = event.target.files;
     if (files && files[0]) {
       const file = files[0];
@@ -44,24 +40,17 @@ export default function Header() {
 
       // Parse the JSON file
       parseJSONFile(file, (parsedData) => {
-        console.log("Parsed Data:", parsedData);
-
         // Update Zustand state with the parsed tasks
         setTasks(parsedData);
 
         // Set fileLoaded to true only after tasks are set
         setFileLoaded(true);
-        console.log(`After imported the isFileLoaded: ${isFileLoaded}`);
       });
     }
   };
 
   const handleLabelClick = () => {
-    console.log("handleLabelClick triggered");
-    console.log(`fileLoaded: ${isFileLoaded}`);
     if (isFileLoaded) {
-      // If "Export", call the export function
-      console.log("Exporting tasks...");
       exportTasks();
     }
   };
