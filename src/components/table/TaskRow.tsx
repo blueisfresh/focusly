@@ -8,39 +8,27 @@ export default function TaskRow({
   children: React.ReactNode;
   // keyProp: string;
 }) {
+  // Convert Children into an array
   const childrenArray = React.Children.toArray(children);
 
   // Check if the first child is a React.Fragment
+  let fragmentChildren: React.ReactNode[] = [];
   const firstChild = childrenArray[0];
-  let fragmentChildren: any[] = [];
 
   if (React.isValidElement(firstChild) && firstChild.type === React.Fragment) {
     fragmentChildren = React.Children.toArray(firstChild.props.children);
+  } else {
+    fragmentChildren = childrenArray;
   }
-
-  // Log the fragment children array
-  console.log(
-    "The fragment children array inside the TaskRow component is:",
-    fragmentChildren
-  );
 
   return (
     <tr className="bg-white hover:bg-gray-50">
+      {/* Directly render the passed children (already <td>) */}
       {fragmentChildren.map((child, index) => (
-        <td
-          key={index}
-          scope="row"
-          className="px-6 py-4 font-medium text-gray-900"
-        >
-          {child}
-        </td>
+        <React.Fragment key={index}>{child}</React.Fragment>
       ))}
 
-      {/* <td scope="row" className="px-6 py-4 font-medium text-gray-900">
-        <img src={getPriorityImage(priority)} alt={`${priority} priority`} />
-      </td> */}
-
-      {/* Edit Icon or Image */}
+      {/* Add additional actions */}
       <td className="px-6 py-4 text-right w-30 hover:bg-slate-100">
         <img
           src="https://utfs.io/f/MOA66ou6ZmXlgI7mQfAYaOBp7g4E5Yrd189ynuqlhGPX06oM"
@@ -48,7 +36,6 @@ export default function TaskRow({
           className="h-8 w-8 cursor-pointer"
         />
       </td>
-      {/* Delete Icon or Image */}
       <td className="px-6 py-4 text-right w-30 hover:bg-slate-100">
         <img
           src="https://utfs.io/f/MOA66ou6ZmXlqfNgStGNnJudfAVUPMbe23olCcTI7G56mkRj"

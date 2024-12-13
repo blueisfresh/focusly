@@ -77,16 +77,20 @@ export default function TaskTable() {
             {tasks.map((task: Task) => (
               <TaskRow key={task.id}>
                 <>
-                  <td>{task.title}</td>
-                  <td>
+                  <td className="px-6 py-4 font-medium text-gray-900">
+                    {task.title}
+                  </td>
+                  <td className="px-6 py-4 font-medium text-gray-900">
                     <img
                       src={getPriorityImage(task.priority)}
                       alt={`${task.priority} priority`}
                       className="h-6 w-6"
                     />
                   </td>
-                  <td>{task.dueDate}</td>
-                  <td>
+                  <td className="px-6 py-4 font-medium text-gray-900">
+                    {task.dueDate}
+                  </td>
+                  <td className="px-6 py-4 font-medium text-gray-900">
                     <input
                       type="checkbox"
                       checked={task.completed}
