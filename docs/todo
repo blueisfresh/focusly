@@ -25,6 +25,11 @@
 
 ---
 
+- [ ] You want to go back to the main side -> x to stay and button to go to the main site
+- [ ] BUG: Adding Task <tr> wraping
+
+---
+
 - [ ] Add completed checkbox -> event listener to immidiately change the zustand
 - [ ] Icons for importancy inside the TaskRow
 
