@@ -4,8 +4,12 @@ import { Task } from "../types/task";
 const LOCAl_STORAGE_KEY = "tasks";
 
 const getInitialTasks = () => {
-  const storedTasks = localStorage.getItem(LOCAl_STORAGE_KEY); // get data from localStorage
-  return storedTasks ? JSON.parse(storedTasks) : []; // return the values from it
+  if (typeof window !== "undefined") {
+    // Only run this code on the client
+    const storedTasks = localStorage.getItem(LOCAl_STORAGE_KEY); // Get data from localStorage
+    return storedTasks ? JSON.parse(storedTasks) : []; // Return the values from it
+  }
+  return []; // Default to an empty array if executed on the server
 };
 
 interface TaskStore {
