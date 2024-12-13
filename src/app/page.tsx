@@ -13,11 +13,9 @@ export default function Home() {
 
   useEffect(() => {
     if (pressedKeys.has("Control") && pressedKeys.has("i")) {
-      console.log("Control + i was pressed");
       clearTasks();
       console.log("The local storage got cleared");
       setFileLoaded(false);
-      console.log("The fileLoaded state got set to false");
     }
   }, [pressedKeys]);
 

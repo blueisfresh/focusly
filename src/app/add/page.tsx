@@ -2,23 +2,40 @@
 
 import { useState } from "react";
 import useTaskStore from "../../store/taskStore";
+import NotificationWindow from "@/components/ui/Notifications"; // Import your NotificationWindow component
 
 export default function Page() {
   const addTask = useTaskStore((state) => state.setTasks); // Zustand add task function
   const tasks = useTaskStore((state) => state.tasks); // Zustand tasks array
-  const storedTasks = localStorage.getItem("tasks"); // Get tasks from localStorage
 
   // Local state for form inputs
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState("Medium");
   const [dueDate, setDueDate] = useState("");
 
+  // Notification state
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationText, setNotificationText] = useState("");
+
+  const handleShowNotification = (message: string) => {
+    setNotificationText(message);
+    setShowNotification(true);
+  };
+
+  const handleCloseNotification = () => {
+    setShowNotification(false);
+    setNotificationText("");
+  };
+
+  // Method: Handle form submission
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Validation
     if (!title || !dueDate) {
-      alert("Please fill in all required fields (Title and Due Date)");
+      handleShowNotification(
+        "Please fill in all required fields (Title and Due Date)"
+      );
       return;
     }
 
@@ -31,20 +48,16 @@ export default function Page() {
       completed: false, // Add the completed property
     };
 
-    if (storedTasks) {
-      const parsedTasks = JSON.parse(storedTasks);
-      addTask([...parsedTasks, newTask]);
+    if (tasks) {
+      addTask([...tasks, newTask]);
     }
-
-    // Add new task to Zustand
-    // addTask([...tasks, newTask]);
 
     // Clear form fields
     setTitle("");
     setPriority("Medium");
     setDueDate("");
 
-    alert("Task added successfully!");
+    handleShowNotification("Task added successfully!");
   };
 
   return (
@@ -121,6 +134,14 @@ export default function Page() {
           </button>
         </div>
       </form>
+
+      {/* Notification Window */}
+      {showNotification && (
+        <NotificationWindow
+          text={notificationText}
+          onClose={handleCloseNotification}
+        />
+      )}
     </div>
   );
 }
