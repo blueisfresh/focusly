@@ -74,8 +74,8 @@ export default function TaskTable() {
           {/* function switch case return div with the server image */}
 
           <tbody>
-            {tasks.map((task: Task) => (
-              <TaskRow key={task.id}>
+            {tasks.map((task) => (
+              <TaskRow key={task.id} isCompleted={task.completed}>
                 <>
                   <td className="px-6 py-4 font-medium text-gray-900">
                     {task.title}

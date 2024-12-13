@@ -1,30 +1,21 @@
-import Link from "next/link";
 import React from "react";
 
 export default function TaskRow({
   children,
-}: // keyProp,
-{
+  isCompleted,
+}: {
   children: React.ReactNode;
-  // keyProp: string;
+  isCompleted: boolean;
 }) {
-  // Convert Children into an array
-  const childrenArray = React.Children.toArray(children);
-
-  // Check if the first child is a React.Fragment
-  let fragmentChildren: React.ReactNode[] = [];
-  const firstChild = childrenArray[0];
-
-  if (React.isValidElement(firstChild) && firstChild.type === React.Fragment) {
-    fragmentChildren = React.Children.toArray(firstChild.props.children);
-  } else {
-    fragmentChildren = childrenArray;
-  }
-
   return (
-    <tr className="bg-white hover:bg-gray-50">
-      {/* Directly render the passed children (already <td>) */}
-      {fragmentChildren.map((child, index) => (
+    <tr
+      className={`${
+        isCompleted
+          ? "bg-gray-100 hover:bg-gray-200" // Darker hover for completed tasks
+          : "bg-white hover:bg-gray-50" // Default hover for incomplete tasks
+      }`}
+    >
+      {React.Children.toArray(children).map((child, index) => (
         <React.Fragment key={index}>{child}</React.Fragment>
       ))}
 
