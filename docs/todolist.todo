@@ -1,0 +1,6 @@
+todo 2:
+    [x] Show reminders for overdue or upcoming tasks.
+    [-] Integrate with Zustand to fetch tasks and determine notifications.
+
+    todo 3:
+        [ ] Ensure all tasks are fetched and displayed correctly.
