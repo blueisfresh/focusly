@@ -19,6 +19,8 @@ interface TaskStore {
   setfileLoaded: (state: boolean) => void;
   /////////////////////////////
   setTasks: (newTasks: Task[]) => void;
+  addTask: (task: Task) => void;
+  updateTask: (task: Task) => void;
   clearTasks: () => void;
   exportTasks: () => void;
 }
@@ -41,6 +43,19 @@ const useTaskStore = create<TaskStore>((set: any) => ({
     console.log("Tasks succesfully saved to localStorage");
   },
 
+  // Add a new task
+  addTask: (task) => {
+    const updatedTasks = [...useTaskStore.getState().tasks, task];
+    useTaskStore.getState().setTasks(updatedTasks); // Update Zustand store
+    localStorage.setItem(LOCAl_STORAGE_KEY, JSON.stringify(updatedTasks)); // Save tasks to localStorage
+  },
+  updateTask: (task) => {
+    const updatedTasks = useTaskStore
+      .getState()
+      .tasks.map((t) => (t.id === task.id ? task : t));
+    useTaskStore.getState().setTasks(updatedTasks); // Update Zustand store
+    localStorage.setItem(LOCAl_STORAGE_KEY, JSON.stringify(updatedTasks)); // Save tasks to localStorage
+  },
   // Clear all tasks
   clearTasks: () => {
     localStorage.removeItem(LOCAl_STORAGE_KEY); // Clear localStorage

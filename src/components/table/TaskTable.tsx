@@ -1,49 +1,32 @@
-"use client";
-
-import React, { useEffect } from "react";
+import React from "react";
 import TaskRow from "./TaskRow";
 import useTaskStore from "@/store/taskStore";
 import { Task } from "@/types/task";
+import { useRouter } from "next/navigation";
 
 export default function TaskTable() {
-  const tasks = useTaskStore((state) => state.tasks); // gets the tasks from taskStore (ZUSTAND)
-  const setTasks = useTaskStore((state) => state.setTasks); // updates the tasks from taskStore (ZUSTAND)
+  const { tasks, setTasks } = useTaskStore(); // gets the tasks from taskStore (ZUSTAND)
+  const router = useRouter();
 
-  useEffect(() => {
-    if (tasks) {
-      setTasks(tasks); // Update the tasks in the store (ZUSTAND)
-    } else {
-      setTasks([]); // Set parsedTasks to an empty array if no tasks are stored
-    }
-  }, []); // useEffect runs only once
+  // useEffect(() => {
+  //   if (tasks) {
+  //     setTasks(tasks); // Update the tasks in the store (ZUSTAND)
+  //   } else {
+  //     setTasks([]); // Set parsedTasks to an empty array if no tasks are stored
+  //   }
+  // }, []); // useEffect runs only once
 
   // Method: for navigating to add Page
+
+  //       const handleAddNewTask = () => {
+  //   window.location.href = "/add";
+  // };
+
   const handleAddNewTask = () => {
-    window.location.href = "/add";
+    router.push("/add");
   };
 
-  // Method: Display right image based on the priority
-  const getPriorityImage = (priority: string) => {
-    switch (priority.toLowerCase()) {
-      case "high":
-        return "https://utfs.io/f/MOA66ou6ZmXlRmeSRYBLSkIZTfAFlrzPwRWxGtMy02nKCovm";
-      case "medium":
-        return "https://utfs.io/f/MOA66ou6ZmXloe1KhUX5AQLy6P9ghUbHvNeiJEVBKnWu74R2  ";
-      case "low":
-        return "https://utfs.io/f/MOA66ou6ZmXluXeQf2LodR0DtqXI9bGcx48gCv16aSYJen5k";
-      default:
-        return "https://utfs.io/f/MOA66ou6ZmXl0evFk0Ie9YtB5DXH3yuvq2SMFNOfrKwsxh4E";
-    }
-  };
-
-  // Method: Toggle the task completed status
-  const handleToggleCompleted = (task: Task) => {
-    const updatedTasks = tasks.map((t) =>
-      t.id === task.id ? { ...t, completed: !t.completed } : t
-    );
-    setTasks(updatedTasks); // Update Zustand store
-  };
-
+  console.log("tasks", tasks);
   return (
     <div className="flex justify-center">
       <div className="relative max-w-[900px] mx-auto sm:rounded-lg max-h-screen overflow-auto">
@@ -74,33 +57,15 @@ export default function TaskTable() {
           {/* function switch case return div with the server image */}
 
           <tbody>
-            {tasks.map((task) => (
-              <TaskRow key={task.id} isCompleted={task.completed}>
-                <>
-                  <td className="px-6 py-4 font-medium text-gray-900">
-                    {task.title}
-                  </td>
-                  <td className="px-6 py-4 font-medium text-gray-900">
-                    <img
-                      src={getPriorityImage(task.priority)}
-                      alt={`${task.priority} priority`}
-                      className="h-6 w-6"
-                    />
-                  </td>
-                  <td className="px-6 py-4 font-medium text-gray-900">
-                    {task.dueDate}
-                  </td>
-                  <td className="px-6 py-4 font-medium text-gray-900">
-                    <input
-                      type="checkbox"
-                      checked={task.completed}
-                      onChange={() => handleToggleCompleted(task)}
-                      className="cursor-pointer"
-                    />
-                  </td>
-                </>
-              </TaskRow>
-            ))}
+            {tasks &&
+              tasks.length > 0 &&
+              tasks.map((task) => (
+                <TaskRow
+                  key={task.id}
+                  isCompleted={task.completed}
+                  task={task}
+                />
+              ))}
           </tbody>
         </table>
 

@@ -5,7 +5,7 @@ import useTaskStore from "../../store/taskStore";
 import NotificationWindow from "@/components/ui/Notifications"; // Import your NotificationWindow component
 
 export default function Page() {
-  const addTask = useTaskStore((state) => state.setTasks); // Zustand add task function
+  const addTask = useTaskStore((state) => state.addTask); // Zustand add task function
   const tasks = useTaskStore((state) => state.tasks); // Zustand tasks array
 
   // Local state for form inputs
@@ -49,7 +49,7 @@ export default function Page() {
     };
 
     if (tasks) {
-      addTask([...tasks, newTask]);
+      addTask(newTask);
     }
 
     // Clear form fields
